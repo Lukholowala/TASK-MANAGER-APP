@@ -5,3 +5,5 @@ const MyTasks = () => {
         <div>MyTasks</div>
     )
 }
+
+export default MyTasks
