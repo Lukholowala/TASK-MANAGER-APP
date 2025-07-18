@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
+import { useUserAuth } from "../../hooks/useUserAuth";
+import { UserContext } from "../../context/userContext";
+import DashboardLayout from "../../components/layouts/DashboardLayout";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
-    return (
-        <div>Dashboard</div>
-    )
-}
+    useUserAuth();
 
-export default Dashboard
+    const {user} = useContext(UserContext);
+
+    const navigate = useNavigate();
+
+    const [dashboardData, setDashboardData] = useState(null);
+    const [pieChartData, setPieChartData] = useState([]);
+    const [barChartData, setBarChartData] = useState([]);
+
+
+
+    return <DashboardLayout activeMenu="Dashboard">Dashboard</DashboardLayout>;
+};
+
+export default Dashboard;
