@@ -9,6 +9,8 @@ import { API_PATHS } from "../../utils/apiPaths";
 import moment from 'moment'
 import { addThousandsSeparator } from "../../utils/helper";
 import  InfoCard  from "../../components/Cards/InfoCard"
+import { LuArrowRight } from "react-icons/lu";
+import TaskListTable from "../../components/TaskListTable";
 
 
 const Dashboard = () => {
@@ -35,13 +37,16 @@ const Dashboard = () => {
         }
     };
 
+    const onSeeMore = ()=>{
+        navigate('/admin/tasks')
+    }
     useEffect(() => {
         getDashboardData()
 
         return () => {}
     }, []);
 
-    return <DashboardLayout activeMenu="Dashboard">
+    return ( <DashboardLayout activeMenu="Dashboard">
        <div className="card my-5">
         <div>
             <div className="col-span-3">
@@ -86,8 +91,24 @@ const Dashboard = () => {
         </div>
        </div>
 
-       
-    </DashboardLayout>;
+       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-4 md:my-6">
+        <div className="md:col-span-2">
+            <div className="card">
+                <div className="flex items-center justify-between">
+                    <h5 className="text-lg">Recent Tasks</h5>
+                    
+                    <button className="card-btn" onClick={onSeeMore}>
+                        See All <LuArrowRight className="text-base" />
+                    </button>
+                </div>
+
+                <TaskListTable tableData={dashboardData?.recentTasks || []} />
+            </div>
+
+        </div>
+       </div>
+    </DashboardLayout>
+    );
 };
 
 export default Dashboard;
