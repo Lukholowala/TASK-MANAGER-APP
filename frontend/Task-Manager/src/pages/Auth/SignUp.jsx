@@ -8,6 +8,7 @@ import { API_PATHS } from "../../utils/apiPaths";
 import { UserContext } from "../../context/userContext";
 import { validateEmail } from "../../utils/helper";
 import uploadImage from "../../utils/uploadImage";
+import { generatePassword } from "../../utils/passwordGenerator";
 
 const SignUp = () => {
     const [profilePic, setProfilePic] = useState(null);
@@ -20,6 +21,16 @@ const SignUp = () => {
 
     const {updateUser} = useContext(UserContext);
     const navigate = useNavigate();
+
+    const handleGeneratePassword = () => {
+        try {
+            setPassword(generatePassword());
+            setError("");
+        } catch (error) {
+            console.error("Failed to generate a secure password", error);
+            setError("Unable to generate a secure password in this browser.");
+        }
+    };
 
       // Handle SignUp Form
       const handleSignUp = async (e) => {
@@ -111,13 +122,22 @@ const SignUp = () => {
                         type="text" 
                     />
 
-                    <Input 
-                        value={password}
-                        onChange={({ target }) => setPassword(target.value)}
-                        label="Password"
-                        placeholder="Min 8 Characters"
-                        type="password" 
-                    />
+                    <div>
+                        <Input 
+                            value={password}
+                            onChange={({ target }) => setPassword(target.value)}
+                            label="Password"
+                            placeholder="Min 8 Characters"
+                            type="password" 
+                        />
+                        <button
+                            type="button"
+                            className="mt-2 text-xs font-medium text-blue-600 underline"
+                            onClick={handleGeneratePassword}
+                        >
+                            Generate secure password
+                        </button>
+                    </div>
 
                     
                     <Input 
