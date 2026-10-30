@@ -17,7 +17,7 @@ export const SIDE_MENU_DATA = [
         id: "02",
         label: "Manage Tasks",
         icon: LuClipboardCheck,
-        path: "/admin/dashboard",
+        path: "/admin/tasks",
     },
     {
         id: "03",

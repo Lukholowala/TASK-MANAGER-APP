@@ -1,2 +1,2 @@
 # TASK-MANAGER-APP
-Building a fullstack app using MERN stack
+A fullstack web application for managing tasks, built with React, Node.js, and MongoDB. 

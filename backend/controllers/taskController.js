@@ -301,7 +301,7 @@ const getDashboardData = async (req, res) => {
         ]);
         const taskPriorityLevels = taskPriorities.reduce((acc, priority) => {
             acc[priority] =
-                taskPriorityLevelsRaw.find((item) => item === priority)?.count || 0;
+                taskPriorityLevelsRaw.find((item) => item._id === priority)?.count || 0;
             return acc;
         }, {});
 
